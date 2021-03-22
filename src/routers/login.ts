@@ -1,26 +1,18 @@
 import { Router } from 'express';
 import { UserController } from '../controller/userController';
+
 const login = Router()
-const uc = new UserController()
+const userController = new UserController()
+
 login.use((req, res, next) => {
     console.log(req.path,req.query);
     next()
 })
-// login.get('/set', async (req, res) => {
-//     console.log('a');
-
-//     let v = await uc.save(req, res, () => { })
-//     res.end(JSON.stringify(v))
-// })
-login.post('/', async (req, res) => {
-    console.log('tr',req.body);
-    
+login.post('/', async (req, res) => {    
     const{phone,password}=req.body
-    const users= await uc.all(req,res)
-    console.log(users);
+    const users= await userController.all(req,res)
     
     const user=users.find(user=>user.phone==phone)
-    console.log(user);
     
     if(user){
         if(user.password==password){

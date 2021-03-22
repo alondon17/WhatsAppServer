@@ -1,15 +1,17 @@
 import { Router } from 'express';
 import { UserController } from '../controller/userController';
+
 const user = Router()
-const uc = new UserController()
+const userController = new UserController()
+
 user.use((req, res, next) => {
     console.log(req.path, req.query);
     next()
 })
 user.put('/', async (req, res) => {
-    res.json({ user: await uc.update(req,res)})
+    res.json({ user: await userController.update(req,res)})
 })
 user.get('/', async (req, res) => {
-    res.json({ users: (await uc.all(req, res)).map(v => { return { ...v, password: undefined } }) })
+    res.json({ users: (await userController.all(req, res)).map(arrUser => { return { ...arrUser, password: undefined } }) })
 })
 module.exports = user

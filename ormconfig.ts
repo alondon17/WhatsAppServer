@@ -1,10 +1,12 @@
-{ 
+import { ConnectionOptions } from "typeorm";
+
+const ormConfig:ConnectionOptions={ 
     "type": "postgres", 
     "host": "localhost", 
     "port": 5432, 
-    "username": "postgres", 
-    "password": "postgres", 
-    "database": "postgres", 
+    "username": process.env.POSTGRES_USERNAME, 
+    "password": process.env.POSTGRES_PASSWORD, 
+    "database": process.env.POSTGRES_DATABASE, 
     "synchronize": true, 
     "logging": false, 
     "entities": [
@@ -18,3 +20,4 @@
        "entitiesDir": "src/entity", "migrationsDir": "src/migration", "subscribersDir": "src/subscriber" 
     } 
  }
+ export default ormConfig

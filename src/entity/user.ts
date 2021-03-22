@@ -1,7 +1,7 @@
 import { Group } from './group';
-import { Check, Column, Entity, JoinColumn, JoinTable, ManyToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Check, Column, Entity, ManyToMany, PrimaryColumn } from "typeorm";
 @Entity()
-export class User {
+export class User extends BaseEntity {
     @PrimaryColumn()
     @Check("phone ~* '^\\+972-5\\d-\\d{3}-\\d{4}$'")
     phone: string;

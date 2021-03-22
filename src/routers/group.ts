@@ -1,19 +1,14 @@
 import { GroupController } from './../controller/groupController';
 import { Router } from 'express';
-import { UserController } from '../controller/userController';
 const group = Router()
-const gc = new GroupController()
+const groupController = new GroupController()
 
 group.post('/new', async (req, res) => {
-    const grg= await gc.save(req,res)
-    // console.log('grg',grg);
-    
-            res.json({group:grg}) 
+    const newGroup = await groupController.save(req, res)
+    res.json({ group: newGroup })
 })
 group.post('/', async (req, res) => {
-    const grg= await gc.getGroupsByUser(req,res)
-    // console.log('grg',grg);
-    
-            res.json({groups:grg[0].groups}) 
+    const groups = await groupController.getGroupsByUser(req, res)
+    res.json({ groups: groups.length>0&& groups[0].groups })
 })
 module.exports = group
