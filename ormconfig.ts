@@ -2,11 +2,11 @@ import { ConnectionOptions } from "typeorm";
 
 const ormConfig:ConnectionOptions={ 
     "type": "postgres", 
-    "host": "localhost", 
+    "host": process.env.POSTGRES_LINK||"localhost", 
     "port": 5432, 
-    "username": process.env.POSTGRES_USERNAME, 
+    "username": process.env.POSTGRES_USERNAME||'postgres', 
     "password": process.env.POSTGRES_PASSWORD, 
-    "database": process.env.POSTGRES_DATABASE, 
+    "database": process.env.POSTGRES_DATABASE||'postgres', 
     "synchronize": true, 
     "logging": false, 
     "entities": [
