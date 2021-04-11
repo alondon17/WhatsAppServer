@@ -42,5 +42,6 @@ jobs:
     - run: npm start
 #     - run: npm test
       env:
-        POSTGRES_LINK: postgres
+        POSTGRES_LINK: localhost
+#         POSTGRES_LINK: postgres
         POSTGRES_PASSWORD: postgres
