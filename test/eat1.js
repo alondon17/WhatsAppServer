@@ -27,13 +27,17 @@ describe('Routes', async function () {
     describe('POST /new', async () => {
 
       let group
+      let user
+      before(async()=>{
+        user=await User.save({phone:'+972-51-181-1111',name:'r',password:'v',about:'fortnite'})
+      })
       it('should return the newly saved object', async function () {
         // try {
           console.log('listen', app.listening);
           const res1 = await axios.post('http://localhost:3003/'
           ).catch(console.log)
           const res = await axios.post('http://localhost:3003/group/new'
-            , { name: 'test-group', users: ['+972-51-111-1111'] }).catch(console.log)
+            , { name: 'test-group', users: ['+972-51-181-1111'] }).catch(console.log)
           const { name, users, isChat } = res.data.group
           group = res.data.group
           expect(name, 'The name is saved incorrectly').to.equal('test-group')
@@ -46,7 +50,8 @@ describe('Routes', async function () {
 
       })
       after(async() => {
-        Group.delete(group.id)
+        await User.delete('+972-51-181-1111')
+        await Group.delete(group.id)
       })
     })
   })
