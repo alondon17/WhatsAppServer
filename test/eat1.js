@@ -9,7 +9,7 @@ let connection
 
 const User = require('../src/entity/user').User
 const Group = require('../src/entity/group').Group
-describe('Routes', function () {
+describe('Routes', async function () {
   before((done) => {
     require('dotenv').config()
     const createApp = require('../server.ts').createApp
@@ -23,7 +23,7 @@ describe('Routes', function () {
       })
   })
 
-  describe('/group', function () {
+  describe('/group', async ()=> {
     describe('POST /new', async () => {
 
       let group
@@ -45,13 +45,13 @@ console.log(err);
         }
 
       })
-      after(() => {
+      after(async() => {
         Group.delete(group.id)
       })
     })
   })
-  describe('/user', () => {
-    describe('PUT /', () => {
+  describe('/user', async() => {
+    describe('PUT /', async() => {
       let userId
       it('should update the user correctly', (done) => {
         User.save({ name: 'Jimbo', password: 'kick', about: 'salt is NaCl', phone: '+972-50-000-0000' })
@@ -67,12 +67,12 @@ console.log(err);
               }).catch(console.log)
           }).catch(console.log)
       })
-      after(() => {
+      after(async() => {
         User.delete(userId)
       })
     })
   })
-  after(() => {
+  after(async() => {
     app.close()
     getConnection().close()
   })
