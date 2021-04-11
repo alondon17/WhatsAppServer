@@ -20,4 +20,6 @@ const ormConfig:ConnectionOptions={
        "entitiesDir": "src/entity", "migrationsDir": "src/migration", "subscribersDir": "src/subscriber" 
     } 
  }
+ console.log(ormConfig);
+ 
  export default ormConfig

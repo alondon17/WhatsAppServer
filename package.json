@@ -28,7 +28,7 @@
     "nodemon": "2.0.7"
   },
   "scripts": {
-    "start": "set PORT=3003 && node index.ts",
+    "start": "set PORT=3003 && nodemon index.ts",
     "test": "ts-mocha test/*.js"
   },
   "keywords": [],
