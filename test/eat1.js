@@ -28,7 +28,7 @@ describe('Routes', async function () {
 
       let group
       it('should return the newly saved object', async function () {
-        try {
+        // try {
           console.log('listen', app.listening);
           const res1 = await axios.post('http://localhost:3003/'
           ).catch(console.log)
@@ -39,10 +39,10 @@ describe('Routes', async function () {
           expect(name, 'The name is saved incorrectly').to.equal('test-group')
           expect(isChat, 'The isChat value is wrong').to.equal(false)
           expect(users, 'The users array has the wrong lengh').to.have.lengthOf(1)
-        }
-        catch(err){
-console.log(err);
-        }
+//         }
+//         catch(err){
+// console.log(err);
+//         }
 
       })
       after(async() => {
